@@ -258,9 +258,9 @@
 				1ABC5BA1180613F40009BBC3 /* ridesharingAppDelegate.h */,
 				1ABC5BA2180613F40009BBC3 /* ridesharingAppDelegate.m */,
 				1ABC5BAD180613F40009BBC3 /* ridesharingViewController.h */,
+				1ABC5BAE180613F40009BBC3 /* ridesharingViewController.m */,
 				1AC0D60A1838931E00553BE3 /* SearchViewController.h */,
 				1AC0D60B1838931E00553BE3 /* SearchViewController.m */,
-				1ABC5BAE180613F40009BBC3 /* ridesharingViewController.m */,
 				1AED2A311811C17A00314BFF /* PhotoViewController.h */,
 				1AED2A321811C17A00314BFF /* PhotoViewController.m */,
 				1ABC5B99180613F40009BBC3 /* Supporting Files */,
@@ -483,6 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ridesharing/ridesharing-Prefix.pch";
 				INFOPLIST_FILE = "ridesharing/ridesharing-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -499,6 +500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ridesharing/ridesharing-Prefix.pch";
 				INFOPLIST_FILE = "ridesharing/ridesharing-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

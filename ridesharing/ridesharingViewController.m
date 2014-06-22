@@ -13,6 +13,7 @@
 
 //11/17/13, for rounded corner of button
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 #define METERS_PER_MILE 1609.344
 
@@ -127,6 +128,23 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
+- (IBAction)requestPressed:(id)sender {
+    //PFObject *point = [PFObject objectWithClassName:@"LocationPoint"];
+    PFObject *point = [PFObject objectWithClassName:@"CustomGeoPoints"];
+    PFGeoPoint *pGeoPoint = [[PFGeoPoint alloc] init];//self.pickupLocation.coordinate;
+    pGeoPoint.latitude = self.pickupLocation.coordinate.latitude;
+    pGeoPoint.longitude = self.pickupLocation.coordinate.longitude;
+    point[@"ParseGeoPoint"] = pGeoPoint;
+    [point saveInBackground];
+    
+    NSArray *points = [NSArray arrayWithObjects:point, nil];
+    [PFObject saveAllInBackground:points];
+    //[points saveAllInBackground];
+    //[points saveAllInBackground];
+    //[points s]
+}
+
+
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
     // Set the title of navigation bar by using the menu items
@@ -198,6 +216,7 @@
     //[self performSelector:@selector(del)]
     //[self performSelector:@selector(reverseg)]
     
+    NSLog(@"lat==>%f; long==>%f", self.pickupLocation.coordinate.latitude, self.pickupLocation.coordinate.longitude);
     //11/8/13, show addressoutlet when NOT dragging map
     [UIView animateWithDuration:0.3 animations:^() {
         self.addressOutlet.alpha = 1.0;

@@ -82,6 +82,8 @@
     //Check login status
     if (loggedIn) {
         // Seque to the next viewController
+        //NSLog(@"inn");
+        [self performSegueWithIdentifier:@"login_success" sender:self];
     } else {
         // Show error alert
         [[[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Facebook login failed, please try again" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
@@ -100,6 +102,7 @@
     [self toggleHiddenState:NO];
 }
 
+//no need to write this method? 6/21/14
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
     NSLog(@"%@", user);
     self.profilePicture.profileID = user.objectID;
