@@ -8,6 +8,7 @@
 
 #import "ridesharingViewController.h"
 #import "SWRevealViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 #import "DriverAnnotation.h"
 
@@ -17,16 +18,20 @@
 
 #define METERS_PER_MILE 1609.344
 
-@interface ridesharingViewController ()
+@interface ridesharingViewController () <CLLocationManagerDelegate>
 //@property (strong, nonatomic) IBOutlet UITextField *addressOutlet;
 
 //store the location when map is dragged, 10/20/13
 @property (strong, nonatomic) CLLocation *pickupLocation;
+@property (strong, nonatomic) CLLocation *dropoffLocation;
 @property (strong, nonatomic) NSMutableDictionary *placeDictionary;
 
 @end
 
-@implementation ridesharingViewController
+@implementation ridesharingViewController {
+    CLLocationManager *manager;
+    //CLGeocoder *geocoder;
+}
 
 @synthesize pickupRequestAnnotation;
 
@@ -61,6 +66,9 @@
     [self.mapView setRegion:startRegion animated:YES];
     
     self.mapView.showsUserLocation = YES;
+    
+
+    
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     
@@ -91,6 +99,8 @@
     
     
     self.addressOutlet.delegate = self;
+    self.dropoffLabel.delegate = self;
+    self.pickupLabel.delegate = self;
     //11/17/13, add input view for addressOutlet
     //self.addressOutlet.inputView = self.searchDisplayController;
     self.placeDictionary = [[NSMutableDictionary alloc] init];
@@ -116,6 +126,17 @@
     //self.title=@"Sherry";
     //change button color
     
+    //hide the postView when map loads.
+    //[UIView animateWithDuration:0.3 animations:^() {
+    self.postView.alpha = 0.0;
+    //}];
+    
+    //get current location.
+    manager = [[CLLocationManager alloc] init];
+    manager.delegate = self;
+    manager.desiredAccuracy = kCLLocationAccuracyBest;
+    [manager startUpdatingLocation];
+    
     _sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
     
     //set the side bar button actin, when it's tapped, it'll show up the sidebar.
@@ -126,23 +147,59 @@
     
     //set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
 }
 
 - (IBAction)requestPressed:(id)sender {
     //PFObject *point = [PFObject objectWithClassName:@"LocationPoint"];
-    PFObject *point = [PFObject objectWithClassName:@"CustomGeoPoints"];
-    PFGeoPoint *pGeoPoint = [[PFGeoPoint alloc] init];//self.pickupLocation.coordinate;
-    pGeoPoint.latitude = self.pickupLocation.coordinate.latitude;
-    pGeoPoint.longitude = self.pickupLocation.coordinate.longitude;
-    point[@"ParseGeoPoint"] = pGeoPoint;
-    [point saveInBackground];
+    //PFObject *point = [PFObject objectWithClassName:@"CustomGeoPoints"];
+    //PFGeoPoint *pGeoPoint = [[PFGeoPoint alloc] init];//self.pickupLocation.coordinate;
+    //pGeoPoint.latitude = self.pickupLocation.coordinate.latitude;
+    //pGeoPoint.longitude = self.pickupLocation.coordinate.longitude;
+    //point[@"ParseGeoPoint"] = pGeoPoint;
+    //[point saveInBackground];
     
-    NSArray *points = [NSArray arrayWithObjects:point, nil];
-    [PFObject saveAllInBackground:points];
+    //NSArray *points = [NSArray arrayWithObjects:point, nil];
+    //[PFObject saveAllInBackground:points];
+    
+    //bring postView to front, 6/24/14.
+    [self.postView.superview bringSubviewToFront:self.postView];
+    [UIView animateWithDuration:0.3 animations:^() {
+        self.postView.alpha = 1.0;
+    }];
     //[points saveAllInBackground];
     //[points saveAllInBackground];
     //[points s]
 }
+
+- (IBAction)postPressed:(id)sender {
+    PFObject *origPoint = [PFObject objectWithClassName:@"CustomGeoPoints"];
+    PFObject *destPoint = [PFObject objectWithClassName:@"CustomGeoPoints"];
+    PFGeoPoint *origGeoPoint = [[PFGeoPoint alloc] init];
+    PFGeoPoint *destGeoPoint = [[PFGeoPoint alloc] init];
+    origGeoPoint.latitude = self.pickupLocation.coordinate.latitude;
+    origGeoPoint.longitude = self.pickupLocation.coordinate.longitude;
+    destGeoPoint.latitude = self.dropoffLocation.coordinate.latitude;
+    destGeoPoint.longitude = self.dropoffLocation.coordinate.longitude;
+    origPoint[@"parseGeoPoint"] = origGeoPoint;
+    destPoint[@"parseGeoPoint"] = destGeoPoint;
+    PFObject *ridePost = [PFObject objectWithClassName:@"ModelRidePosts"];
+    ridePost[@"orig"] = origPoint;
+    ridePost[@"dest"] = destPoint;
+    [ridePost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if (succeeded) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Trip Posted!" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+    }];
+}
+
+- (IBAction)closePostViewPressed:(id)sender {
+    [UIView animateWithDuration:0.3 animations:^() {
+        self.postView.alpha = 0.0;
+    }];
+}
+
 
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
@@ -184,8 +241,19 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    NSLog(@"hahahahaha");
     if (!self.userLocationUpdated) {
+        NSLog(@"userlocationupdated!");
         [self.mapView setCenterCoordinate:userLocation.location.coordinate];
+        //reverse geocode currentlocation(userLocation)
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        NSLog(@"user location==>%@", self.mapView.userLocation.location);
+        [geocoder reverseGeocodeLocation:self.mapView.userLocation.location completionHandler:^(NSArray *placemarks, NSError *error){
+            if (error == nil && placemarks.count) {
+                NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
+                [self.pickupLabel setText:[dictionary valueForKey:@"Street"]];
+            }
+        }];
         self.userLocationUpdated=YES;
     }
 }
@@ -213,10 +281,15 @@
     
     //get the center coordinate of the mapview. 10/20/13
     self.pickupLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
+    
+    //get the center coordinate of the mapview as dropoff location. 6/24/14
+    self.dropoffLocation = [[CLLocation alloc] initWithLatitude:self.mapView.centerCoordinate.latitude longitude:self.mapView.centerCoordinate.longitude];
+    
     //[self performSelector:@selector(del)]
     //[self performSelector:@selector(reverseg)]
     
     NSLog(@"lat==>%f; long==>%f", self.pickupLocation.coordinate.latitude, self.pickupLocation.coordinate.longitude);
+    NSLog(@"dropoff LAT==>%f; lONG==>%f", self.dropoffLocation.coordinate.latitude, self.dropoffLocation.coordinate.longitude);
     //11/8/13, show addressoutlet when NOT dragging map
     [UIView animateWithDuration:0.3 animations:^() {
         self.addressOutlet.alpha = 1.0;
@@ -241,14 +314,26 @@
 
 - (void)reverseGeocodeLocation {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:self.pickupLocation completionHandler:^(NSArray *placemarks, NSError *error){
+    [geocoder reverseGeocodeLocation:self.dropoffLocation completionHandler:^(NSArray *placemarks, NSError *error){
         
         if (placemarks.count) {
             NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
+            CLPlacemark *placemark = [[CLPlacemark alloc] initWithPlacemark:[placemarks objectAtIndex:0]];
+            NSLog(@"street address==>%@ %@", placemark.subThoroughfare, placemark.thoroughfare);
+            
             [self.addressOutlet setText:[dictionary valueForKey:@"Street"]];
+            [self.dropoffLabel setText:[dictionary valueForKey:@"Street"]];
             //[self.addressOutlet setTitle:[dictionary valueForKey:@"Street"] forState:UIControlStateNormal];
         }
     }];
+    /*
+    [geocoder reverseGeocodeLocation:self.dropoffLocation completionHandler:^(NSArray *placemarks, NSError *error){
+        if (placemarks.count) {
+            NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
+            [self.dropoffLabel setText:[dictionary valueForKey:@"Street"]];
+        }
+    }];
+    */
 }
 //- (void)dealloc {
 //    [pickupRequestAnnotation release];
@@ -268,5 +353,48 @@
     // 3
     //[_mapView setRegion:viewRegion animated:YES];
 //}
+
+- (IBAction)backgroundTap:(id)sender {
+    //hide postView when tap background
+    [UIView animateWithDuration:0.3 animations:^() {
+        self.postView.alpha = 0.0;
+    }];
+}
+
+#pragma mark - UIAlertViewDelegate Methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    //[UIView animateWithDuration:0.1 animations:^() {
+        self.postView.alpha = 0.0;
+    //}];
+}
+
+#pragma mark - CLLocationManagerDelegate Methods
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
+    NSLog(@"Failed to get location!");
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"New Location==>%@", locations.lastObject);
+    //CLLocation *currentLocation = locations.lastObject;
+    
+    /*
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error){
+        
+        if (error == nil && placemarks.count) {
+            NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
+            NSLog(@"street address from location manager==>%@", [dictionary valueForKey:@"Street"]);
+            [self.pickupLabel setText:[dictionary valueForKey:@"Street"]];
+        }
+        
+    }];
+    */
+}
 
 @end

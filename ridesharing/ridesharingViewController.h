@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ridesharingViewController : UIViewController <UITextFieldDelegate, MKMapViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate> {
+@interface ridesharingViewController : UIViewController <UITextFieldDelegate, MKMapViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate> {
     MKPointAnnotation *pickupRequestAnnotation;  //? what for, 10/19/13
 } 
 
@@ -39,6 +39,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *dummyButton;
 @property (weak, nonatomic) IBOutlet UIButton *requestButton;
+
+@property (weak, nonatomic) IBOutlet UIView *postView;
+
+@property (weak, nonatomic) IBOutlet UITextField *pickupLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *dropoffLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *closePostViewButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
+
+- (IBAction)backgroundTap:(id)sender;
 
 //11/8/13, UISearchBar
 //@property (strong, nonatomic) UISearchBar *addressBar;

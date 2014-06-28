@@ -33,7 +33,6 @@
 		1AB41ADB1842C301000B132E /* ridesharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC5BAE180613F40009BBC3 /* ridesharingViewController.m */; };
 		1AB583691811174A00FAAB03 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB583681811174A00FAAB03 /* SWRevealViewController.m */; };
 		1ABC5B93180613F40009BBC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B92180613F40009BBC3 /* UIKit.framework */; };
-		1ABC5B95180613F40009BBC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B94180613F40009BBC3 /* Foundation.framework */; };
 		1ABC5B97180613F40009BBC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B96180613F40009BBC3 /* CoreGraphics.framework */; };
 		1ABC5B9D180613F40009BBC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1ABC5B9B180613F40009BBC3 /* InfoPlist.strings */; };
 		1ABC5B9F180613F40009BBC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABC5B9E180613F40009BBC3 /* main.m */; };
@@ -57,6 +56,19 @@
 		72019E46194CD66800CDA3AF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72019E45194CD66800CDA3AF /* SystemConfiguration.framework */; };
 		72019E49194CE89900CDA3AF /* Comms.m in Sources */ = {isa = PBXBuildFile; fileRef = 72019E48194CE89900CDA3AF /* Comms.m */; };
 		72019E4B194CF5A000CDA3AF /* FBLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 72019E4A194CF5A000CDA3AF /* FBLogin.png */; };
+		72059768195F5F8A006D3D89 /* entiresplashscreenRGB-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7205975E195F5F8A006D3D89 /* entiresplashscreenRGB-02.png */; };
+		72059769195F5F8A006D3D89 /* entiresplashscreenRGB.png in Resources */ = {isa = PBXBuildFile; fileRef = 7205975F195F5F8A006D3D89 /* entiresplashscreenRGB.png */; };
+		7205976A195F5F8A006D3D89 /* ic_rizzilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059760195F5F8A006D3D89 /* ic_rizzilogo.png */; };
+		7205976B195F5F8A006D3D89 /* logosplash-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059761195F5F8A006D3D89 /* logosplash-03.png */; };
+		7205976C195F5F8A006D3D89 /* logosplash.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059762195F5F8A006D3D89 /* logosplash.png */; };
+		7205976D195F5F8A006D3D89 /* myprofilepage.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059763195F5F8A006D3D89 /* myprofilepage.png */; };
+		7205976E195F5F8A006D3D89 /* rizzilogo-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059764195F5F8A006D3D89 /* rizzilogo-01.png */; };
+		7205976F195F5F8A006D3D89 /* splashscreen-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059765195F5F8A006D3D89 /* splashscreen-02.png */; };
+		72059770195F5F8A006D3D89 /* splashscreenRGB-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059766195F5F8A006D3D89 /* splashscreenRGB-02.png */; };
+		72059771195F5F8A006D3D89 /* splashscreenRGB.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059767195F5F8A006D3D89 /* splashscreenRGB.png */; };
+		72059773195F5FEE006D3D89 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72059772195F5FEE006D3D89 /* Images.xcassets */; };
+		72059774195F63BB006D3D89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B94180613F40009BBC3 /* Foundation.framework */; };
+		72B3D9B6195A36DF008FAD5E /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B3D9B5195A36DF008FAD5E /* cross.png */; };
 		72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */; };
 		72B7F2B4193594FE0011F4D7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B7F2B3193594FE0011F4D7 /* FacebookSDK.framework */; };
 		72B7F2FB1935A0B10011F4D7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B7F2FA1935A0B10011F4D7 /* LoginViewController.m */; };
@@ -124,6 +136,18 @@
 		72019E48194CE89900CDA3AF /* Comms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comms.m; sourceTree = "<group>"; };
 		72019E4A194CF5A000CDA3AF /* FBLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FBLogin.png; path = Resources/FBLogin.png; sourceTree = "<group>"; };
 		72019E4E194D09C100CDA3AF /* ridesharing-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ridesharing-Info.plist"; sourceTree = "<group>"; };
+		7205975E195F5F8A006D3D89 /* entiresplashscreenRGB-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "entiresplashscreenRGB-02.png"; sourceTree = "<group>"; };
+		7205975F195F5F8A006D3D89 /* entiresplashscreenRGB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entiresplashscreenRGB.png; sourceTree = "<group>"; };
+		72059760195F5F8A006D3D89 /* ic_rizzilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rizzilogo.png; sourceTree = "<group>"; };
+		72059761195F5F8A006D3D89 /* logosplash-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logosplash-03.png"; sourceTree = "<group>"; };
+		72059762195F5F8A006D3D89 /* logosplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logosplash.png; sourceTree = "<group>"; };
+		72059763195F5F8A006D3D89 /* myprofilepage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myprofilepage.png; sourceTree = "<group>"; };
+		72059764195F5F8A006D3D89 /* rizzilogo-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rizzilogo-01.png"; sourceTree = "<group>"; };
+		72059765195F5F8A006D3D89 /* splashscreen-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashscreen-02.png"; sourceTree = "<group>"; };
+		72059766195F5F8A006D3D89 /* splashscreenRGB-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashscreenRGB-02.png"; sourceTree = "<group>"; };
+		72059767195F5F8A006D3D89 /* splashscreenRGB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreenRGB.png; sourceTree = "<group>"; };
+		72059772195F5FEE006D3D89 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		72B3D9B5195A36DF008FAD5E /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		72B7F2B1193593F70011F4D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		72B7F2B3193594FE0011F4D7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		72B7F2F91935A0B10011F4D7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -135,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72059774195F63BB006D3D89 /* Foundation.framework in Frameworks */,
 				72019E46194CD66800CDA3AF /* SystemConfiguration.framework in Frameworks */,
 				72019E44194CD65A00CDA3AF /* StoreKit.framework in Frameworks */,
 				72019E42194CD64D00CDA3AF /* Security.framework in Frameworks */,
@@ -148,7 +173,6 @@
 				1ABC5BB6180614C30009BBC3 /* MapKit.framework in Frameworks */,
 				1ABC5B93180613F40009BBC3 /* UIKit.framework in Frameworks */,
 				72019E36194CD54900CDA3AF /* Parse.framework in Frameworks */,
-				1ABC5B95180613F40009BBC3 /* Foundation.framework in Frameworks */,
 				72B7F2B4193594FE0011F4D7 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,6 +183,7 @@
 		1A3CBED118111D6F0029D445 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				7205975D195F5F8A006D3D89 /* Logos */,
 				72019E4A194CF5A000CDA3AF /* FBLogin.png */,
 				1A46D7DC1838BA2100E79B46 /* crimson.jpg */,
 				1A46D7DA1838B96400E79B46 /* GreenBackground.png */,
@@ -272,6 +297,7 @@
 				72B7F2FA1935A0B10011F4D7 /* LoginViewController.m */,
 				72019E47194CE89900CDA3AF /* Comms.h */,
 				72019E48194CE89900CDA3AF /* Comms.m */,
+				72059772195F5FEE006D3D89 /* Images.xcassets */,
 			);
 			path = ridesharing;
 			sourceTree = "<group>";
@@ -282,6 +308,7 @@
 				1A3CBED118111D6F0029D445 /* image */,
 				72019E4E194D09C100CDA3AF /* ridesharing-Info.plist */,
 				1ABC5B9B180613F40009BBC3 /* InfoPlist.strings */,
+				72B3D9B5195A36DF008FAD5E /* cross.png */,
 				1ABC5B9E180613F40009BBC3 /* main.m */,
 				1ABC5BA0180613F40009BBC3 /* ridesharing-Prefix.pch */,
 				1ABC5BA4180613F40009BBC3 /* Default.png */,
@@ -289,6 +316,24 @@
 				1ABC5BA8180613F40009BBC3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7205975D195F5F8A006D3D89 /* Logos */ = {
+			isa = PBXGroup;
+			children = (
+				7205975E195F5F8A006D3D89 /* entiresplashscreenRGB-02.png */,
+				7205975F195F5F8A006D3D89 /* entiresplashscreenRGB.png */,
+				72059760195F5F8A006D3D89 /* ic_rizzilogo.png */,
+				72059761195F5F8A006D3D89 /* logosplash-03.png */,
+				72059762195F5F8A006D3D89 /* logosplash.png */,
+				72059763195F5F8A006D3D89 /* myprofilepage.png */,
+				72059764195F5F8A006D3D89 /* rizzilogo-01.png */,
+				72059765195F5F8A006D3D89 /* splashscreen-02.png */,
+				72059766195F5F8A006D3D89 /* splashscreenRGB-02.png */,
+				72059767195F5F8A006D3D89 /* splashscreenRGB.png */,
+			);
+			name = Logos;
+			path = Resources/Logos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ABC5B9D180613F40009BBC3 /* InfoPlist.strings in Resources */,
+				72059773195F5FEE006D3D89 /* Images.xcassets in Resources */,
 				1ABC5BA5180613F40009BBC3 /* Default.png in Resources */,
 				1ABC5BA7180613F40009BBC3 /* Default@2x.png in Resources */,
 				1ABC5BA9180613F40009BBC3 /* Default-568h@2x.png in Resources */,
@@ -352,21 +398,32 @@
 				1A3CBEE418111E000029D445 /* tag_photo.jpg in Resources */,
 				1A3CBEE518111E000029D445 /* calendar_photo.jpg in Resources */,
 				1A3CBEE618111E000029D445 /* wishlist_photo.jpg in Resources */,
+				72B3D9B6195A36DF008FAD5E /* cross.png in Resources */,
 				1A3CBEE718111E000029D445 /* menu.png in Resources */,
 				1A3CBEE818111E000029D445 /* menu@2x.png in Resources */,
+				7205976F195F5F8A006D3D89 /* splashscreen-02.png in Resources */,
 				72019E4B194CF5A000CDA3AF /* FBLogin.png in Resources */,
 				1A3CBEE918111E000029D445 /* nav_bg.png in Resources */,
 				1A3CBEEA18111E000029D445 /* bookmark.png in Resources */,
 				1A3CBEEB18111E000029D445 /* calendar.png in Resources */,
 				1A3CBEEC18111E000029D445 /* comments.png in Resources */,
 				72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */,
+				72059769195F5F8A006D3D89 /* entiresplashscreenRGB.png in Resources */,
 				1A3CBEED18111E000029D445 /* map.png in Resources */,
 				1A3CBEEE18111E000029D445 /* news.png in Resources */,
+				7205976C195F5F8A006D3D89 /* logosplash.png in Resources */,
 				1A3CBEEF18111E000029D445 /* photo.png in Resources */,
+				72059768195F5F8A006D3D89 /* entiresplashscreenRGB-02.png in Resources */,
+				7205976D195F5F8A006D3D89 /* myprofilepage.png in Resources */,
+				7205976A195F5F8A006D3D89 /* ic_rizzilogo.png in Resources */,
+				72059771195F5F8A006D3D89 /* splashscreenRGB.png in Resources */,
 				1A3CBEF018111E000029D445 /* tag.png in Resources */,
+				72059770195F5F8A006D3D89 /* splashscreenRGB-02.png in Resources */,
 				1A3CBEF118111E000029D445 /* wishlist.png in Resources */,
 				1A446F85181317320076FC25 /* driver_icon.png in Resources */,
 				1A446F8718131AEC0076FC25 /* driver_icon_small.png in Resources */,
+				7205976E195F5F8A006D3D89 /* rizzilogo-01.png in Resources */,
+				7205976B195F5F8A006D3D89 /* logosplash-03.png in Resources */,
 				1A446F8A18137DE00076FC25 /* pin_icon.png in Resources */,
 				1A46D7D91838B83C00E79B46 /* Draw.jpg in Resources */,
 				1A46D7DB1838B96400E79B46 /* GreenBackground.png in Resources */,
@@ -475,6 +532,8 @@
 		1ABC5BB3180613F40009BBC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/weilu/Documents/FacebookSDK,
@@ -492,6 +551,8 @@
 		1ABC5BB4180613F40009BBC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/weilu/Documents/FacebookSDK,
