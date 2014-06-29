@@ -163,6 +163,8 @@
     //[PFObject saveAllInBackground:points];
     
     //bring postView to front, 6/24/14.
+    // default ride preference == nil, let user select.
+    self.ridePreferenceControl.selectedSegmentIndex = UISegmentedControlNoSegment;
     [self.postView.superview bringSubviewToFront:self.postView];
     [UIView animateWithDuration:0.3 animations:^() {
         self.postView.alpha = 1.0;
@@ -173,6 +175,16 @@
 }
 
 - (IBAction)postPressed:(id)sender {
+    // .selected poorly implemented?
+    if (self.ridePreferenceControl.selectedSegmentIndex == UISegmentedControlNoSegment) {
+        NSLog(self.ridePreferenceControl.selected ? @"yes" : @"no");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please select your ride preference" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alert.tag = 1; //need to input ride preference alert
+        [alert show];
+        //break;
+    }
+    
+    else {
     PFObject *origPoint = [PFObject objectWithClassName:@"CustomGeoPoints"];
     PFObject *destPoint = [PFObject objectWithClassName:@"CustomGeoPoints"];
     PFGeoPoint *origGeoPoint = [[PFGeoPoint alloc] init];
@@ -183,15 +195,38 @@
     destGeoPoint.longitude = self.dropoffLocation.coordinate.longitude;
     origPoint[@"parseGeoPoint"] = origGeoPoint;
     destPoint[@"parseGeoPoint"] = destGeoPoint;
+
+    NSInteger ridePreference = self.ridePreferenceControl.selectedSegmentIndex;
+        //NSInteger ridePreferenceToPost;
+    NSNumber *ridePreferenceToPost;
+    
+        switch (ridePreference) {
+            case 0:
+                ridePreferenceToPost = @0;
+                break;
+            case 1:
+                ridePreferenceToPost = @5;
+                break;
+            case 2:
+                ridePreferenceToPost = @10;
+            default:
+                break;
+        }
+        
     PFObject *ridePost = [PFObject objectWithClassName:@"ModelRidePosts"];
     ridePost[@"orig"] = origPoint;
     ridePost[@"dest"] = destPoint;
+    ridePost[@"ridePref"] = ridePreferenceToPost;
+    ridePost[@"user"] = [PFUser currentUser];
+        
     [ridePost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Trip Posted!" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            alert.tag = 2; //trip posted alert
             [alert show];
         }
     }];
+    }
 }
 
 - (IBAction)closePostViewPressed:(id)sender {
@@ -366,7 +401,10 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     //[UIView animateWithDuration:0.1 animations:^() {
+    //dismiss postview if trip posted.
+    if (alertView.tag == 2) {
         self.postView.alpha = 0.0;
+    }
     //}];
 }
 

@@ -50,6 +50,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ridePreferenceControl;
+
+
 - (IBAction)backgroundTap:(id)sender;
 
 //11/8/13, UISearchBar
