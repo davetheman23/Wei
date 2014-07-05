@@ -148,6 +148,8 @@
     //set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    
+    
 }
 
 - (IBAction)requestPressed:(id)sender {
