@@ -31,9 +31,11 @@
 @implementation ridesharingViewController {
     CLLocationManager *manager;
     //CLGeocoder *geocoder;
+    PFUser *currentUser;
 }
 
 @synthesize pickupRequestAnnotation;
+
 
 - (void)viewDidLoad
 {
@@ -45,6 +47,9 @@
     //                              0,
     //                              self.view.bounds.size.width,
     //                              self.view.bounds.size.height);
+    
+    currentUser = [PFUser currentUser];
+    
     self.mapView.delegate=self;
     
     //[self.view addSubview:self.mapView];
@@ -148,8 +153,8 @@
     //set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    
-    
+    //PFQuery *query = [PFQuery queryWithClassName:@"CustomGeoPoints"];
+    //[query whe]
 }
 
 - (IBAction)requestPressed:(id)sender {
@@ -187,16 +192,16 @@
     }
     
     else {
-    PFObject *origPoint = [PFObject objectWithClassName:@"CustomGeoPoints"];
-    PFObject *destPoint = [PFObject objectWithClassName:@"CustomGeoPoints"];
+    PFObject *origPoint = [PFObject objectWithClassName:kRSParseCustomGeoPointKey];
+    PFObject *destPoint = [PFObject objectWithClassName:kRSParseCustomGeoPointKey];
     PFGeoPoint *origGeoPoint = [[PFGeoPoint alloc] init];
     PFGeoPoint *destGeoPoint = [[PFGeoPoint alloc] init];
     origGeoPoint.latitude = self.pickupLocation.coordinate.latitude;
     origGeoPoint.longitude = self.pickupLocation.coordinate.longitude;
     destGeoPoint.latitude = self.dropoffLocation.coordinate.latitude;
     destGeoPoint.longitude = self.dropoffLocation.coordinate.longitude;
-    origPoint[@"parseGeoPoint"] = origGeoPoint;
-    destPoint[@"parseGeoPoint"] = destGeoPoint;
+    origPoint[kRSParseCustomGeoPointParseGeoPointKey] = origGeoPoint;
+    destPoint[kRSParseCustomGeoPointParseGeoPointKey] = destGeoPoint;
 
     NSInteger ridePreference = self.ridePreferenceControl.selectedSegmentIndex;
         //NSInteger ridePreferenceToPost;
@@ -215,11 +220,15 @@
                 break;
         }
         
-    PFObject *ridePost = [PFObject objectWithClassName:@"ModelRidePosts"];
-    ridePost[@"orig"] = origPoint;
-    ridePost[@"dest"] = destPoint;
-    ridePost[@"ridePref"] = ridePreferenceToPost;
-    ridePost[@"user"] = [PFUser currentUser];
+    PFObject *ridePost = [PFObject objectWithClassName:kRSParseTripPostsClassKey];
+    ridePost[kRSParseTripPostsOrigKey] = origPoint;
+    ridePost[kRSParseTripPostsDestKey] = destPoint;
+    ridePost[kRSParseTripPostsRidePreferenceKey] = ridePreferenceToPost;
+    ridePost[kRSParseTripPostsOwnerKey] = [PFUser currentUser];
+    
+    //RSPost *testPost = [RSPost objectWithClassName:@"postTest"];
+    //testPost[kRSParseTripPostsOwnerKey] = currentUser;
+    
         
     [ridePost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
@@ -235,9 +244,47 @@
     [UIView animateWithDuration:0.3 animations:^() {
         self.postView.alpha = 0.0;
     }];
+    [self queryForAllPostsOfUser:currentUser];
 }
 
+# pragma mark - Fetch ride posts and pin them on the map
 
+- (void)queryForAllPostsOfUser:(PFUser *)user
+{
+    PFQuery *query = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
+    [query whereKey:kRSParseTripPostsOwnerKey equalTo:user];
+    [query includeKey:kRSParseTripPostsDestKey];
+    [query includeKey:kRSParseTripPostsOwnerKey];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        if (!error) {
+            NSLog(@"Succesfully retrieved %lu ride posts.", objects.count);
+            
+            NSMutableArray *newPosts = [[NSMutableArray alloc] init];
+            
+            for (PFObject *object in objects) {
+                RSPost *newPost = [[RSPost alloc] initWithPFObject:object];
+                [newPosts addObject:newPost];
+            }
+            //for (RSPost *newPost in newPosts) {
+            //    CLLocation *objectLocation = [[CLLocation alloc] initWithLatitude:newPost.coordinate.latitude longitude:newPost.coordinate.longitude];
+                
+            //}
+            [self.mapView addAnnotations:newPosts];
+        }
+        else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (void)queryForAllPostsNearLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy)nearbyDistance
+{
+    //PFQuery *query = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
+    if (currentLocation == nil) {
+        NSLog(@"got a nil location!");
+    }
+}
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
@@ -296,6 +343,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
     MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"annoView"];
     
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -305,7 +353,7 @@
     if (!view) {
         view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annoView"];
     }
-    view.image = [UIImage imageNamed:@"driver_icon_small.png"];
+    view.image = [UIImage imageNamed:kRSDriverPinFileNameKey];
     
     
     return view;

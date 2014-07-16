@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "RSPost.h"
 
 @interface ridesharingViewController : UIViewController <UITextFieldDelegate, MKMapViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate> {
     MKPointAnnotation *pickupRequestAnnotation;  //? what for, 10/19/13
@@ -55,6 +56,12 @@
 
 - (IBAction)backgroundTap:(id)sender;
 
+
+- (void)queryForAllPostsNearLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy)nearbyDistance;
+
+- (void)queryForAllPostsOfUser:(PFUser *)user;
+
+
 //11/8/13, UISearchBar
 //@property (strong, nonatomic) UISearchBar *addressBar;
 
@@ -62,5 +69,7 @@
 //store the location when map is dragged, 10/20/13
 //@property (strong, nonatomic) CLLocation *pickupLocation;
 //@property (strong, nonatomic) NSMutableDictionary *placeDictionary;
+
+
 
 @end

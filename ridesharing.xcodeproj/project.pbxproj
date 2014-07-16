@@ -68,6 +68,7 @@
 		72059771195F5F8A006D3D89 /* splashscreenRGB.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059767195F5F8A006D3D89 /* splashscreenRGB.png */; };
 		72059773195F5FEE006D3D89 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72059772195F5FEE006D3D89 /* Images.xcassets */; };
 		72059774195F63BB006D3D89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B94180613F40009BBC3 /* Foundation.framework */; };
+		7293B7171971ED9300EE28A8 /* RSPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B7161971ED9300EE28A8 /* RSPost.m */; };
 		72B3D9B6195A36DF008FAD5E /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B3D9B5195A36DF008FAD5E /* cross.png */; };
 		72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */; };
 		72B7F2B4193594FE0011F4D7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72B7F2B3193594FE0011F4D7 /* FacebookSDK.framework */; };
@@ -147,6 +148,9 @@
 		72059766195F5F8A006D3D89 /* splashscreenRGB-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashscreenRGB-02.png"; sourceTree = "<group>"; };
 		72059767195F5F8A006D3D89 /* splashscreenRGB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreenRGB.png; sourceTree = "<group>"; };
 		72059772195F5FEE006D3D89 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		720597751968E0CF006D3D89 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		7293B7161971ED9300EE28A8 /* RSPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPost.m; sourceTree = "<group>"; };
+		7293B7181972034800EE28A8 /* RSPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPost.h; sourceTree = "<group>"; };
 		72B3D9B5195A36DF008FAD5E /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		72B7F2B1193593F70011F4D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		72B7F2B3193594FE0011F4D7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -279,6 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */,
+				720597751968E0CF006D3D89 /* constants.h */,
+				7293B7141971ED3A00EE28A8 /* Objects */,
 				1AB58366181116F900FAAB03 /* Library */,
 				1ABC5BA1180613F40009BBC3 /* ridesharingAppDelegate.h */,
 				1ABC5BA2180613F40009BBC3 /* ridesharingAppDelegate.m */,
@@ -334,6 +340,15 @@
 			);
 			name = Logos;
 			path = Resources/Logos;
+			sourceTree = "<group>";
+		};
+		7293B7141971ED3A00EE28A8 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				7293B7181972034800EE28A8 /* RSPost.h */,
+				7293B7161971ED9300EE28A8 /* RSPost.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +456,7 @@
 				1ABC5B9F180613F40009BBC3 /* main.m in Sources */,
 				1ABC5BA3180613F40009BBC3 /* ridesharingAppDelegate.m in Sources */,
 				1AB583691811174A00FAAB03 /* SWRevealViewController.m in Sources */,
+				7293B7171971ED9300EE28A8 /* RSPost.m in Sources */,
 				72019E49194CE89900CDA3AF /* Comms.m in Sources */,
 				1AED2A331811C17A00314BFF /* PhotoViewController.m in Sources */,
 				1AED2A361811C34200314BFF /* SidebarViewController.m in Sources */,
