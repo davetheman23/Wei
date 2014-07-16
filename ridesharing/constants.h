@@ -21,7 +21,7 @@ static NSString * const kRSParseTripPostsOwnerKey = @"owner";
 
 
 
-static NSString * const kPAWParseUserKey = @"user";
-static NSString * const kPAWParseUsernameKey = @"username";
-static NSString * const kPAWParseTextKey = @"text";
-static NSString * const kPAWParseLocationKey = @"location";
+//static NSString * const kPAWParseUserKey = @"user";
+//static NSString * const kPAWParseUsernameKey = @"username";
+//static NSString * const kPAWParseTextKey = @"text";
+//static NSString * const kPAWParseLocationKey = @"location";
