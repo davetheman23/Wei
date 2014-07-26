@@ -50,6 +50,7 @@
 		72059773195F5FEE006D3D89 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72059772195F5FEE006D3D89 /* Images.xcassets */; };
 		72059774195F63BB006D3D89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B94180613F40009BBC3 /* Foundation.framework */; };
 		7293B7171971ED9300EE28A8 /* RSPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B7161971ED9300EE28A8 /* RSPost.m */; };
+		7293B71E197F2BBE00EE28A8 /* FBFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B71D197F2BBE00EE28A8 /* FBFriend.m */; };
 		72B3D9B6195A36DF008FAD5E /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B3D9B5195A36DF008FAD5E /* cross.png */; };
 		72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */; };
 		72B7F2FB1935A0B10011F4D7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B7F2FA1935A0B10011F4D7 /* LoginViewController.m */; };
@@ -131,6 +132,8 @@
 		720597751968E0CF006D3D89 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		7293B7161971ED9300EE28A8 /* RSPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPost.m; sourceTree = "<group>"; };
 		7293B7181972034800EE28A8 /* RSPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPost.h; sourceTree = "<group>"; };
+		7293B71C197F2BBE00EE28A8 /* FBFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFriend.h; sourceTree = "<group>"; };
+		7293B71D197F2BBE00EE28A8 /* FBFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFriend.m; sourceTree = "<group>"; };
 		72B3D9B5195A36DF008FAD5E /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		72B7F2B1193593F70011F4D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		72B7F2F91935A0B10011F4D7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 			children = (
 				7293B7181972034800EE28A8 /* RSPost.h */,
 				7293B7161971ED9300EE28A8 /* RSPost.m */,
+				7293B71C197F2BBE00EE28A8 /* FBFriend.h */,
+				7293B71D197F2BBE00EE28A8 /* FBFriend.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 				1AB583691811174A00FAAB03 /* SWRevealViewController.m in Sources */,
 				7293B7171971ED9300EE28A8 /* RSPost.m in Sources */,
 				72019E49194CE89900CDA3AF /* Comms.m in Sources */,
+				7293B71E197F2BBE00EE28A8 /* FBFriend.m in Sources */,
 				1AED2A331811C17A00314BFF /* PhotoViewController.m in Sources */,
 				1AED2A361811C34200314BFF /* SidebarViewController.m in Sources */,
 				72B7F2FB1935A0B10011F4D7 /* LoginViewController.m in Sources */,

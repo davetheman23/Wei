@@ -10,6 +10,9 @@ static NSString * const kRSDriverPinFileNameKey = @"driver_icon_small.png";
 
 // Parse API key constants:
 static NSString * const kRSParseTripPostsClassKey = @"TripPosts";
+static NSString * const kRSParseUserClassKey = @"_User";
+static NSString * const kRSParseUserFBIDKey = @"fbId";
+
 static NSString * const kRSParseCustomGeoPointKey = @"CustomGeoPoints";
 static NSString * const kRSParseCustomGeoPointParseGeoPointKey = @"parseGeoPoint";
 

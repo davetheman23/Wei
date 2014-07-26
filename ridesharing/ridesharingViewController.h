@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "RSPost.h"
+#import "FBFriend.h"
 
 @interface ridesharingViewController : UIViewController <UITextFieldDelegate, MKMapViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate> {
     MKPointAnnotation *pickupRequestAnnotation;  //? what for, 10/19/13
 } 
 
-//@property (strong, nonatomic) MKMapView *mapView;
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 //@interface ridesharingViewController : UIViewController
@@ -30,13 +31,15 @@
 //property for pick up request annotation
 @property (nonatomic, retain) MKPointAnnotation *pickupRequestAnnotation;
 
-//@property (strong, nonatomic) UITextField *addressOutlet;
+
 @property (weak, nonatomic) IBOutlet UITextField *testText;
-//@property (weak, nonatomic) IBOutlet UITextField *addressOutlet;
-//@property (weak, nonatomic) IBOutlet UILabel *addressOutlet;
-//@property (weak, nonatomic) IBOutlet UITextField *addressOutlet;
-//@property (weak, nonatomic) IBOutlet UIButton *addressOutlet;
-//@property (weak, nonatomic) IBOutlet UIButton *addressOutlet;
+
+// Temporary buttons to test friends-based queries, location-based queries, time-compatibility-based queries, respectively.
+@property (weak, nonatomic) IBOutlet UIButton *friendButton;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
+@property (weak, nonatomic) IBOutlet UIButton *timeButton;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *addressOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *dummyButton;
 @property (weak, nonatomic) IBOutlet UIButton *requestButton;

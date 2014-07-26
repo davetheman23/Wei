@@ -50,6 +50,8 @@
     
     currentUser = [PFUser currentUser];
     
+    
+    
     self.mapView.delegate=self;
     
     //[self.view addSubview:self.mapView];
@@ -245,6 +247,8 @@
         self.postView.alpha = 0.0;
     }];
     [self queryForAllPostsOfUser:currentUser];
+    //currentUser.objectId
+    //[self queryForAllPostsOfUser:currentUser.username];
 }
 
 # pragma mark - Fetch ride posts and pin them on the map
@@ -252,7 +256,11 @@
 - (void)queryForAllPostsOfUser:(PFUser *)user
 {
     PFQuery *query = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
+    //PFUser *user = [PFUser user];
+    //user.objectId = userID;
+    //user.username = userID;
     [query whereKey:kRSParseTripPostsOwnerKey equalTo:user];
+    //[query whereKey:<#(NSString *)#> nearGeoPoint:<#(PFGeoPoint *)#> withinKilometers:<#(double)#>]
     [query includeKey:kRSParseTripPostsDestKey];
     [query includeKey:kRSParseTripPostsOwnerKey];
     
@@ -285,6 +293,89 @@
         NSLog(@"got a nil location!");
     }
 }
+
+
+// Temporary buttons to test friends-based queries, location-based queries, time-compatibility-based queries, respectively.
+
+- (IBAction)fButtonDidClick:(id)sender {
+    // Make the api call to get friends
+    [FBRequestConnection startWithGraphPath:@"/me/friends" parameters:nil HTTPMethod:@"GET" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
+     {
+         // Handle the result.
+         // The returned result is already a dictionary, no need to Json parse it.
+         NSLog(@"result = %@", [result description]);
+         //NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:result options:0 error:&error];
+         //NSLog(@"parsedobject %@", [parsedObject description]);
+         NSArray *results = [result valueForKey:@"data"];
+         NSLog(@"Friends count ==>%lu", results.count);
+         
+         for (NSDictionary *friendDic in results) {
+             FBFriend *friend = [[FBFriend alloc] init];
+             for (NSString *key in friendDic) {
+                 if ([friend respondsToSelector:NSSelectorFromString(key)]) {
+                     [friend setValue:[friendDic valueForKey:key] forKey:key];
+                 }
+             }
+             //friend.fbId = [friendDic valueForKey:]
+             NSLog(@"friend id: %@", [friendDic valueForKey:@"id"]);
+             
+             //PFQuery *query = [PFQuery queryWithClassName:<#(NSString *)#>];
+             PFQuery *query = [PFUser query];
+             
+             
+             
+             [query whereKey:kRSParseUserFBIDKey equalTo:[friendDic valueForKey:@"id"]];
+             
+             
+             //[query whereKey:kRSParseUserFBIDKey equalTo:[NSString stringWithFormat:@"%@",[friendDic valueForKey:@"id"]]];
+             //PFUser *thisUser = [PFUser user];
+             //[thisUser setObject:[friendDic valueForKey:@"id"] forKey:@"fbId"];
+             //[query whereKey:kRSParseUserFBIDKey equalTo:thisUser[@"fbId"]];
+             //[query where]
+             NSLog(@"inn");
+             
+             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+                 if (!error) {
+                     NSLog(@"Succesfully retrieved %lu friend.", objects.count);
+                     
+                     //NSMutableArray *newPosts = [[NSMutableArray alloc] init];
+                     
+                     for (PFObject *object in objects) {
+                         //RSPost *newPost = [[RSPost alloc] initWithPFObject:object];
+                         //PFUser *thisUser = [[PFUser alloc] initWithPFObject:object];
+                         //[newPosts addObject:newPost];
+                         
+                         // Can force convert query result (PFObject) to its corresponding class,
+                         // In this case PFUser.
+                         PFUser *thisUser = (PFUser *)object;
+                         //NSString *userID = [object objectForKey:@"PFUser"];
+                         NSLog(@"friend info ==> %@", [object description]);
+                         NSLog(@"userID == %@", thisUser.objectId);
+                         //NSLog(@"objectID == %@", [object objectForKey:@"objectId"]);
+                         [self queryForAllPostsOfUser:thisUser];
+                     }
+                     //for (RSPost *newPost in newPosts) {
+                     //    CLLocation *objectLocation = [[CLLocation alloc] initWithLatitude:newPost.coordinate.latitude longitude:newPost.coordinate.longitude];
+                     
+                     //}
+                     //[self.mapView addAnnotations:newPosts];
+                 }
+                 else {
+                     NSLog(@"Error: %@ %@", error, [error userInfo]);
+                 }
+             }];
+         }
+         
+     }];
+}
+
+
+- (IBAction)lButtonDidClick:(id)sender {
+}
+
+- (IBAction)tButtonDidClick:(id)sender {
+}
+
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
