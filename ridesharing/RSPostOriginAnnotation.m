@@ -1,0 +1,13 @@
+//
+//  RSPostOriginAnnotation.m
+//  ridesharing
+//
+//  Created by Wei Lu on 7/26/14.
+//  Copyright (c) 2014 WEI LU. All rights reserved.
+//
+
+#import "RSPostOriginAnnotation.h"
+
+@implementation RSPostOriginAnnotation
+
+@end
