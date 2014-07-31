@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import <MapKit/MapKit.h>
 
-@interface RSPost : NSObject <MKAnnotation>
+@interface RSPostDestAnnotation : NSObject <MKAnnotation>
 
 //required by MKAnnotation protocol
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;

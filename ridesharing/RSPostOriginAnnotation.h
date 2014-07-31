@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface RSPostOriginAnnotation : NSObject
+@interface RSPostOriginAnnotation : NSObject <MKAnnotation>
+
+//required by MKAnnotation protocol
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+@property (nonatomic, readonly, strong) PFObject *object;
+@property (nonatomic, readonly, strong) PFGeoPoint *geopoint;
+@property (nonatomic, readonly, strong) PFUser *user;
+
+//designated initializer
+- (id)initWithCoordinate:(CLLocationCoordinate2D) coordinate;
+- (id)initWithPFObject:(PFObject *)anObject;
 
 @end

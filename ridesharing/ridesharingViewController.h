@@ -6,9 +6,16 @@
 //  Copyright (c) 2013 WEI LU. All rights reserved.
 //
 
+// Constants
+static NSInteger const kRSOrigAnnotationOption=0;
+static NSInteger const kRSDestAnnotationOption=1;
+static NSInteger const kRSBothAnnotationOption=2;
+
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "RSPost.h"
+//#import "RSPost.h"
+#import "RSPostDestAnnotation.h"
+#import "RSPostOriginAnnotation.h"
 #import "FBFriend.h"
 
 @interface ridesharingViewController : UIViewController <UITextFieldDelegate, MKMapViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate> {
@@ -60,7 +67,7 @@
 - (IBAction)backgroundTap:(id)sender;
 
 
-- (void)queryForAllPostsNearLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy)nearbyDistance;
+- (void)queryForAllPostsNearLocation:(CLLocation *)location withNearbyDistance:(CLLocationAccuracy)nearbyDistance withAnnotationOption:(NSInteger)annotationOption;
 
 - (void)queryForAllPostsOfUser:(PFUser *)user;
 

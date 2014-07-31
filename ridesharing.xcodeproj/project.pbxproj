@@ -49,7 +49,7 @@
 		72059771195F5F8A006D3D89 /* splashscreenRGB.png in Resources */ = {isa = PBXBuildFile; fileRef = 72059767195F5F8A006D3D89 /* splashscreenRGB.png */; };
 		72059773195F5FEE006D3D89 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72059772195F5FEE006D3D89 /* Images.xcassets */; };
 		72059774195F63BB006D3D89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC5B94180613F40009BBC3 /* Foundation.framework */; };
-		7293B7171971ED9300EE28A8 /* RSPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B7161971ED9300EE28A8 /* RSPost.m */; };
+		7293B7171971ED9300EE28A8 /* RSPostDestAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B7161971ED9300EE28A8 /* RSPostDestAnnotation.m */; };
 		7293B71E197F2BBE00EE28A8 /* FBFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B71D197F2BBE00EE28A8 /* FBFriend.m */; };
 		72B3D9B6195A36DF008FAD5E /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B3D9B5195A36DF008FAD5E /* cross.png */; };
 		72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */; };
@@ -73,6 +73,9 @@
 		72C10E5C1978B3DE00E0F7B8 /* wishlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 72C10E4A1978B3DE00E0F7B8 /* wishlist.png */; };
 		72C10E5D1978B3DE00E0F7B8 /* wishlist_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 72C10E4B1978B3DE00E0F7B8 /* wishlist_photo.jpg */; };
 		72C10E5F1978B6EC00E0F7B8 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72C10E5E1978B6EC00E0F7B8 /* FacebookSDK.framework */; };
+		72D3946919841E4300BB6B2B /* Destination_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D3946819841E4300BB6B2B /* Destination_icon.png */; };
+		72D3946B19841EAC00BB6B2B /* Origin_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D3946A19841EAC00BB6B2B /* Origin_icon.png */; };
+		72D394701984251600BB6B2B /* RSPostOriginAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D3946F1984251600BB6B2B /* RSPostOriginAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,8 +133,8 @@
 		72059767195F5F8A006D3D89 /* splashscreenRGB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreenRGB.png; sourceTree = "<group>"; };
 		72059772195F5FEE006D3D89 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		720597751968E0CF006D3D89 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
-		7293B7161971ED9300EE28A8 /* RSPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPost.m; sourceTree = "<group>"; };
-		7293B7181972034800EE28A8 /* RSPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPost.h; sourceTree = "<group>"; };
+		7293B7161971ED9300EE28A8 /* RSPostDestAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPostDestAnnotation.m; sourceTree = "<group>"; };
+		7293B7181972034800EE28A8 /* RSPostDestAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPostDestAnnotation.h; sourceTree = "<group>"; };
 		7293B71C197F2BBE00EE28A8 /* FBFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFriend.h; sourceTree = "<group>"; };
 		7293B71D197F2BBE00EE28A8 /* FBFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFriend.m; sourceTree = "<group>"; };
 		72B3D9B5195A36DF008FAD5E /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
@@ -157,6 +160,10 @@
 		72C10E4A1978B3DE00E0F7B8 /* wishlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wishlist.png; sourceTree = "<group>"; };
 		72C10E4B1978B3DE00E0F7B8 /* wishlist_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wishlist_photo.jpg; sourceTree = "<group>"; };
 		72C10E5E1978B6EC00E0F7B8 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		72D3946819841E4300BB6B2B /* Destination_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Destination_icon.png; path = Annotations/Destination_icon.png; sourceTree = "<group>"; };
+		72D3946A19841EAC00BB6B2B /* Origin_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Origin_icon.png; path = Annotations/Origin_icon.png; sourceTree = "<group>"; };
+		72D3946E1984251600BB6B2B /* RSPostOriginAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPostOriginAnnotation.h; sourceTree = "<group>"; };
+		72D3946F1984251600BB6B2B /* RSPostOriginAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPostOriginAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +195,7 @@
 		1A3CBED118111D6F0029D445 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				72D3946719841E3800BB6B2B /* Annotations */,
 				7205975D195F5F8A006D3D89 /* Logos */,
 				72019E4A194CF5A000CDA3AF /* FBLogin.png */,
 				1A46D7DC1838BA2100E79B46 /* crimson.jpg */,
@@ -328,8 +336,10 @@
 		7293B7141971ED3A00EE28A8 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				7293B7181972034800EE28A8 /* RSPost.h */,
-				7293B7161971ED9300EE28A8 /* RSPost.m */,
+				7293B7181972034800EE28A8 /* RSPostDestAnnotation.h */,
+				7293B7161971ED9300EE28A8 /* RSPostDestAnnotation.m */,
+				72D3946E1984251600BB6B2B /* RSPostOriginAnnotation.h */,
+				72D3946F1984251600BB6B2B /* RSPostOriginAnnotation.m */,
 				7293B71C197F2BBE00EE28A8 /* FBFriend.h */,
 				7293B71D197F2BBE00EE28A8 /* FBFriend.m */,
 			);
@@ -360,6 +370,15 @@
 			);
 			name = "Menu Icons";
 			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		72D3946719841E3800BB6B2B /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				72D3946819841E4300BB6B2B /* Destination_icon.png */,
+				72D3946A19841EAC00BB6B2B /* Origin_icon.png */,
+			);
+			name = Annotations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,6 +458,7 @@
 				72059768195F5F8A006D3D89 /* entiresplashscreenRGB-02.png in Resources */,
 				7205976D195F5F8A006D3D89 /* myprofilepage.png in Resources */,
 				7205976A195F5F8A006D3D89 /* ic_rizzilogo.png in Resources */,
+				72D3946919841E4300BB6B2B /* Destination_icon.png in Resources */,
 				72C10E4C1978B3DE00E0F7B8 /* bookmark.png in Resources */,
 				72C10E4F1978B3DE00E0F7B8 /* calendar_photo.jpg in Resources */,
 				72C10E571978B3DE00E0F7B8 /* menu@2x.png in Resources */,
@@ -448,6 +468,7 @@
 				1A446F8718131AEC0076FC25 /* driver_icon_small.png in Resources */,
 				7205976E195F5F8A006D3D89 /* rizzilogo-01.png in Resources */,
 				72C10E5A1978B3DE00E0F7B8 /* tag.png in Resources */,
+				72D3946B19841EAC00BB6B2B /* Origin_icon.png in Resources */,
 				7205976B195F5F8A006D3D89 /* logosplash-03.png in Resources */,
 				1A446F8A18137DE00076FC25 /* pin_icon.png in Resources */,
 				1A46D7D91838B83C00E79B46 /* Draw.jpg in Resources */,
@@ -466,7 +487,7 @@
 				1ABC5B9F180613F40009BBC3 /* main.m in Sources */,
 				1ABC5BA3180613F40009BBC3 /* ridesharingAppDelegate.m in Sources */,
 				1AB583691811174A00FAAB03 /* SWRevealViewController.m in Sources */,
-				7293B7171971ED9300EE28A8 /* RSPost.m in Sources */,
+				7293B7171971ED9300EE28A8 /* RSPostDestAnnotation.m in Sources */,
 				72019E49194CE89900CDA3AF /* Comms.m in Sources */,
 				7293B71E197F2BBE00EE28A8 /* FBFriend.m in Sources */,
 				1AED2A331811C17A00314BFF /* PhotoViewController.m in Sources */,
@@ -474,6 +495,7 @@
 				72B7F2FB1935A0B10011F4D7 /* LoginViewController.m in Sources */,
 				1A446F8218130ECC0076FC25 /* DriverAnnotation.m in Sources */,
 				1AC0D60C1838931F00553BE3 /* SearchViewController.m in Sources */,
+				72D394701984251600BB6B2B /* RSPostOriginAnnotation.m in Sources */,
 				1AB41ADB1842C301000B132E /* ridesharingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

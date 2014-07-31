@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 WEI LU. All rights reserved.
 //
 
-#import "RSPost.h"
+#import "RSPostDestAnnotation.h"
 
-@interface RSPost ()
+@interface RSPostDestAnnotation ()
 
 // Redefine these properties to make them read/write for internal class accesses and mutations.
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
@@ -20,7 +20,7 @@
 
 
 
-@implementation RSPost
+@implementation RSPostDestAnnotation
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
     self = [super init];

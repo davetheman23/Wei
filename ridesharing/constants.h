@@ -6,7 +6,13 @@
 //  Copyright (c) 2014 WEI LU. All rights reserved.
 //
 
+// File name keys
 static NSString * const kRSDriverPinFileNameKey = @"driver_icon_small.png";
+static NSString * const kRSDestinationPinFileNameKey = @"Destination_icon.png";
+static NSString * const kRSOriginPinFileNameKey = @"Origin_icon.png";
+
+// Constants keys
+static double const kRSOneMile = 1.0;
 
 // Parse API key constants:
 static NSString * const kRSParseTripPostsClassKey = @"TripPosts";

@@ -264,6 +264,7 @@
     [query includeKey:kRSParseTripPostsDestKey];
     [query includeKey:kRSParseTripPostsOwnerKey];
     
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
         if (!error) {
             NSLog(@"Succesfully retrieved %lu ride posts.", objects.count);
@@ -271,13 +272,14 @@
             NSMutableArray *newPosts = [[NSMutableArray alloc] init];
             
             for (PFObject *object in objects) {
-                RSPost *newPost = [[RSPost alloc] initWithPFObject:object];
+                RSPostDestAnnotation *newPost = [[RSPostDestAnnotation alloc] initWithPFObject:object];
                 [newPosts addObject:newPost];
             }
             //for (RSPost *newPost in newPosts) {
             //    CLLocation *objectLocation = [[CLLocation alloc] initWithLatitude:newPost.coordinate.latitude longitude:newPost.coordinate.longitude];
                 
             //}
+            
             [self.mapView addAnnotations:newPosts];
         }
         else {
@@ -286,12 +288,48 @@
     }];
 }
 
-- (void)queryForAllPostsNearLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy)nearbyDistance
+- (void)queryForAllPostsNearLocation:(CLLocation *)location withNearbyDistance:(CLLocationAccuracy)nearbyDistance withAnnotationOption:(NSInteger)annotationOption
 {
-    //PFQuery *query = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
-    if (currentLocation == nil) {
+    PFQuery *tripPostQuery = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
+    if (location == nil) {
         NSLog(@"got a nil location!");
     }
+    
+    
+    PFQuery *geoPointQuery = [PFQuery queryWithClassName:kRSParseCustomGeoPointKey];
+    // Query for posts near a location
+    PFGeoPoint *point = [PFGeoPoint geoPointWithLocation:location];
+    [geoPointQuery whereKey:kRSParseCustomGeoPointParseGeoPointKey nearGeoPoint:point withinMiles:kRSOneMile];
+    
+    // Query origin withinNearbyRegion
+    [tripPostQuery whereKey:kRSParseTripPostsOrigKey matchesQuery:geoPointQuery];
+    [tripPostQuery includeKey:kRSParseTripPostsOrigKey];
+    [tripPostQuery includeKey:kRSParseTripPostsDestKey];
+    [tripPostQuery includeKey:kRSParseTripPostsOwnerKey];
+    
+    [tripPostQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Succesfully retrieved %lu ride posts near the location.", objects.count);
+            
+            NSMutableArray *newPosts = [[NSMutableArray alloc] init];
+            
+            for (PFObject *object in objects) {
+                RSPostOriginAnnotation *newOriginPost = [[RSPostOriginAnnotation alloc] initWithPFObject:object];
+                RSPostDestAnnotation *newDestPost = [[RSPostDestAnnotation alloc] initWithPFObject:object];
+                if (annotationOption==kRSOrigAnnotationOption) {
+                    [newPosts addObject:newOriginPost];
+                }
+                else if (annotationOption==kRSDestAnnotationOption) {
+                    [newPosts addObject:newDestPost];
+                }
+                else {
+                    [newPosts addObject:newOriginPost];
+                    [newPosts addObject:newDestPost];
+                }
+            }
+            [self.mapView addAnnotations:newPosts];
+        }
+    }];
 }
 
 
@@ -371,6 +409,7 @@
 
 
 - (IBAction)lButtonDidClick:(id)sender {
+    [self queryForAllPostsNearLocation:self.mapView.userLocation.location withNearbyDistance:kRSOneMile withAnnotationOption:kRSOrigAnnotationOption];
 }
 
 - (IBAction)tButtonDidClick:(id)sender {
@@ -444,7 +483,15 @@
     if (!view) {
         view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annoView"];
     }
-    view.image = [UIImage imageNamed:kRSDriverPinFileNameKey];
+    if ([annotation isKindOfClass:[RSPostDestAnnotation class]]) {
+        view.image = [UIImage imageNamed:kRSDestinationPinFileNameKey];
+    }
+    else if ([annotation isKindOfClass:[RSPostOriginAnnotation class]]) {
+        view.image = [UIImage imageNamed:kRSOriginPinFileNameKey];
+    }
+    else {
+        view.image = [UIImage imageNamed:kRSDriverPinFileNameKey];
+    }
     
     
     return view;
@@ -472,6 +519,7 @@
     }];
     [self performSelector:@selector(delayedReverseGeocodeLocation)
                withObject:nil afterDelay:0.3];
+    [self performSelector:@selector(delayedRetrieveNearbyDestinations) withObject:nil afterDelay:0.3];
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
@@ -484,8 +532,18 @@
 
 //cancel previous request if within 0.3s delay
 - (void)delayedReverseGeocodeLocation {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    //[NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedReverseGeocodeLocation) object:nil];
     [self reverseGeocodeLocation];
+}
+
+// Cancel previous request (within 0.3s), execute only this one.
+- (void)delayedRetrieveNearbyDestinations {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    NSLog(@"Wa!!");
+    // self.dropoffLocation.coordinate = mapview.centerCoordinate.
+    [self queryForAllPostsNearLocation:self.dropoffLocation withNearbyDistance:kRSOneMile withAnnotationOption:kRSDestAnnotationOption];
 }
 
 - (void)reverseGeocodeLocation {
