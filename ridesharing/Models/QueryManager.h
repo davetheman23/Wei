@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "QueryManagerDelegate.h"
 
 @interface QueryManager : NSObject
+
+@property (weak, nonatomic) id<QueryManagerDelegate> delegate;
+
+- (void)queryForAllPostsOfUser:(PFUser *)user;
+- (void)queryForAllPostsNearLocation:(CLLocation *)location withNearbyDistance:(CLLocationAccuracy)nearbyDistance withAnnotationOption:(NSInteger)annotationOption;
+
+- (void)queryForAllPostsWithOrigNearLocation:(CLLocation *)location withNearbyDistance:(CLLocationAccuracy)nearbyDistance;
 
 @end

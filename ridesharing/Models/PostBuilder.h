@@ -10,4 +10,9 @@
 
 @interface PostBuilder : NSObject
 
++ (NSArray *)postsFromQueryResults:(NSArray *)results;
++ (NSArray *)destAnnotationFromQueryResults:(NSArray *)results;
++ (NSArray *)origAnnotationFromQueryResults:(NSArray *)results;
+
+
 @end

@@ -18,16 +18,22 @@ static double const kRSOneMile = 1.0;
 static NSString * const kRSParseTripPostsClassKey = @"TripPosts";
 static NSString * const kRSParseUserClassKey = @"_User";
 static NSString * const kRSParseUserFBIDKey = @"fbId";
+static NSString * const kRSParseUserFBNameKey = @"fbName";
 
 static NSString * const kRSParseCustomGeoPointKey = @"CustomGeoPoints";
 static NSString * const kRSParseCustomGeoPointParseGeoPointKey = @"parseGeoPoint";
+static NSString * const kRSParseCustomGeoPointOwnerKey = @"owner";
+static NSString * const kRSParseCustomGeoPointPostKey = @"post";
+static NSString * const kRSParseCustomGeoPointType = @"locationType";
+//static NSNumber const kRSParseCustomGeoPointOrigType = 1;
+//static NSNumber const kRSParseCustomGeoPointDestType = 2;
 
 static NSString * const kRSParseTripPostsOrigKey = @"orig";
 static NSString * const kRSParseTripPostsDestKey = @"dest";
 static NSString * const kRSParseTripPostsRidePreferenceKey = @"ridePref";
 static NSString * const kRSParseTripPostsOwnerKey = @"owner";
 
-
+static NSString * const kRSParseTripPostsDepartTimeKey = @"departAt";
 
 
 //static NSString * const kPAWParseUserKey = @"user";

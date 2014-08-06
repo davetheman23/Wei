@@ -16,9 +16,16 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 
+#import "QueryManagerDelegate.h"
+#import "QueryManager.h"
+
 #define METERS_PER_MILE 1609.344
 
-@interface ridesharingViewController () <CLLocationManagerDelegate>
+@interface ridesharingViewController () <CLLocationManagerDelegate, QueryManagerDelegate> {
+    QueryManager *_queryManager;
+    NSMutableArray *origAnnotations;
+    NSMutableArray *destAnnotations;
+}
 //@property (strong, nonatomic) IBOutlet UITextField *addressOutlet;
 
 //store the location when map is dragged, 10/20/13
@@ -51,6 +58,12 @@
     currentUser = [PFUser currentUser];
     
     
+    /* ======set up queryManager ========*/
+    
+    _queryManager = [[QueryManager alloc] init];
+    _queryManager.delegate = self;
+    
+    /* ========================= ========*/
     
     self.mapView.delegate=self;
     
@@ -157,6 +170,17 @@
     
     //PFQuery *query = [PFQuery queryWithClassName:@"CustomGeoPoints"];
     //[query whe]
+    
+    /* ====== Fetch origins near current location ========*/
+    
+    if (origAnnotations==nil) {
+        NSLog(@"start fetch");
+        origAnnotations = [[NSMutableArray alloc] init];
+        [_queryManager queryForAllPostsWithOrigNearLocation:self.pickupLocation withNearbyDistance:kRSOneMile];
+    }
+    
+    /* ========================= ========*/
+    
 }
 
 - (IBAction)requestPressed:(id)sender {
@@ -227,11 +251,18 @@
     ridePost[kRSParseTripPostsDestKey] = destPoint;
     ridePost[kRSParseTripPostsRidePreferenceKey] = ridePreferenceToPost;
     ridePost[kRSParseTripPostsOwnerKey] = [PFUser currentUser];
+        
+        origPoint[kRSParseCustomGeoPointOwnerKey] = [PFUser currentUser];
+        destPoint[kRSParseCustomGeoPointOwnerKey] = [PFUser currentUser];
+        //origPoint[kRSParseCustomGeoPointPostKey] = ridePost;
+        //destPoint[kRSParseCustomGeoPointPostKey] = ridePost;
+        origPoint[kRSParseCustomGeoPointType] = @1;//kRSParseCustomGeoPointOrigType;
+        destPoint[kRSParseCustomGeoPointType] = @2;//kRSParseCustomGeoPointDestType;
+        
     
     //RSPost *testPost = [RSPost objectWithClassName:@"postTest"];
     //testPost[kRSParseTripPostsOwnerKey] = currentUser;
     
-        
     [ridePost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Trip Posted!" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -288,6 +319,26 @@
     }];
 }
 
+- (void)queryForAllPostsWithOrigNearLocation:(CLLocation *)location withNearbyDistance:(CLLocationAccuracy)nearbyDistance
+{
+    PFQuery *tripPostQuery = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
+    if (location == nil) {
+        NSLog(@"got a nil location!");
+    }
+    
+    PFQuery *geoPointQuery = [PFQuery queryWithClassName:kRSParseCustomGeoPointKey];
+    // Query for posts near a location
+    PFGeoPoint *point = [PFGeoPoint geoPointWithLocation:location];
+    [geoPointQuery whereKey:kRSParseCustomGeoPointParseGeoPointKey nearGeoPoint:point withinMiles:nearbyDistance];
+    [geoPointQuery whereKey:kRSParseCustomGeoPointType equalTo:@1];
+    
+    // Query origin withinNearbyRegion
+    [tripPostQuery whereKey:kRSParseTripPostsOrigKey matchesQuery:geoPointQuery];
+    [tripPostQuery includeKey:kRSParseTripPostsOrigKey];
+    [tripPostQuery includeKey:kRSParseTripPostsDestKey];
+    [tripPostQuery includeKey:kRSParseTripPostsOwnerKey];
+}
+
 - (void)queryForAllPostsNearLocation:(CLLocation *)location withNearbyDistance:(CLLocationAccuracy)nearbyDistance withAnnotationOption:(NSInteger)annotationOption
 {
     PFQuery *tripPostQuery = [PFQuery queryWithClassName:kRSParseTripPostsClassKey];
@@ -334,7 +385,6 @@
 
 
 // Temporary buttons to test friends-based queries, location-based queries, time-compatibility-based queries, respectively.
-
 - (IBAction)fButtonDidClick:(id)sender {
     // Make the api call to get friends
     [FBRequestConnection startWithGraphPath:@"/me/friends" parameters:nil HTTPMethod:@"GET" completionHandler:^(FBRequestConnection *connection, id result, NSError *error)
@@ -476,23 +526,32 @@
     
     MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"annoView"];
     
+    // Let the system handle user location annotations.
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
     
     if (!view) {
+        // If an existing pin view was not available, create one.
         view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annoView"];
     }
+    else {
+        view.annotation = annotation;
+    }
+    //view.annotation = annotation;
     if ([annotation isKindOfClass:[RSPostDestAnnotation class]]) {
         view.image = [UIImage imageNamed:kRSDestinationPinFileNameKey];
+        view.canShowCallout=YES;
     }
     else if ([annotation isKindOfClass:[RSPostOriginAnnotation class]]) {
         view.image = [UIImage imageNamed:kRSOriginPinFileNameKey];
+        view.canShowCallout=YES;
     }
     else {
         view.image = [UIImage imageNamed:kRSDriverPinFileNameKey];
     }
     
+    //view.canShowCallout=YES;
     
     return view;
 }
@@ -519,7 +578,7 @@
     }];
     [self performSelector:@selector(delayedReverseGeocodeLocation)
                withObject:nil afterDelay:0.3];
-    [self performSelector:@selector(delayedRetrieveNearbyDestinations) withObject:nil afterDelay:0.3];
+    //[self performSelector:@selector(delayedRetrieveNearbyDestinations) withObject:nil afterDelay:0.3];
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
@@ -632,6 +691,18 @@
         
     }];
     */
+}
+
+#pragma mark - QueryManagerDelegate methods
+
+- (void)didReceivePosts:(NSArray *)posts {
+    NSLog(@"posts count==%lu", posts.count);
+    [origAnnotations addObjectsFromArray:posts];
+    [self.mapView addAnnotations:origAnnotations];
+}
+
+- (void)fetchingPostsFailedWithError:(NSError *)error {
+    
 }
 
 @end
