@@ -108,11 +108,13 @@
     self.addressOutlet.delegate = self;
     self.dropoffLabel.delegate = self;
     self.pickupLabel.delegate = self;
+    
     //11/17/13, add input view for addressOutlet
     //self.addressOutlet.inputView = self.searchDisplayController;
     self.placeDictionary = [[NSMutableDictionary alloc] init];
     //self.dummyButton.alpha = 0.05;
     //[self.view addSubview:self.addressOutlet];
+    
     //11/17/13, set rounded corner for request button
     CALayer *btnLayer = self.requestButton.layer; //layer;
     [btnLayer setMasksToBounds:YES];

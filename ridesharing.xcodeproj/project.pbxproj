@@ -52,7 +52,6 @@
 		7293B7171971ED9300EE28A8 /* RSPostDestAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B7161971ED9300EE28A8 /* RSPostDestAnnotation.m */; };
 		7293B71E197F2BBE00EE28A8 /* FBFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 7293B71D197F2BBE00EE28A8 /* FBFriend.m */; };
 		72B3D9B6195A36DF008FAD5E /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B3D9B5195A36DF008FAD5E /* cross.png */; };
-		72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */; };
 		72B7F2FB1935A0B10011F4D7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B7F2FA1935A0B10011F4D7 /* LoginViewController.m */; };
 		72C10E4C1978B3DE00E0F7B8 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 72C10E3A1978B3DE00E0F7B8 /* bookmark.png */; };
 		72C10E4D1978B3DE00E0F7B8 /* bookmark_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 72C10E3B1978B3DE00E0F7B8 /* bookmark_photo.jpg */; };
@@ -76,6 +75,9 @@
 		72D3946919841E4300BB6B2B /* Destination_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D3946819841E4300BB6B2B /* Destination_icon.png */; };
 		72D3946B19841EAC00BB6B2B /* Origin_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D3946A19841EAC00BB6B2B /* Origin_icon.png */; };
 		72D394701984251600BB6B2B /* RSPostOriginAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D3946F1984251600BB6B2B /* RSPostOriginAnnotation.m */; };
+		A730F0D31991A75600A0A4CE /* Friends.png in Resources */ = {isa = PBXBuildFile; fileRef = A730F0D21991A75600A0A4CE /* Friends.png */; };
+		A730F0DC1991ACC900A0A4CE /* UserIcon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A730F0DB1991ACC900A0A4CE /* UserIcon.jpeg */; };
+		A778C3B01997D4A9004077AF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A778C3AE1997D4A9004077AF /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,7 +140,6 @@
 		7293B71C197F2BBE00EE28A8 /* FBFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFriend.h; sourceTree = "<group>"; };
 		7293B71D197F2BBE00EE28A8 /* FBFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFriend.m; sourceTree = "<group>"; };
 		72B3D9B5195A36DF008FAD5E /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
-		72B7F2B1193593F70011F4D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		72B7F2F91935A0B10011F4D7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		72B7F2FA1935A0B10011F4D7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		72C10E3A1978B3DE00E0F7B8 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
@@ -164,6 +165,9 @@
 		72D3946A19841EAC00BB6B2B /* Origin_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Origin_icon.png; path = Annotations/Origin_icon.png; sourceTree = "<group>"; };
 		72D3946E1984251600BB6B2B /* RSPostOriginAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPostOriginAnnotation.h; sourceTree = "<group>"; };
 		72D3946F1984251600BB6B2B /* RSPostOriginAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPostOriginAnnotation.m; sourceTree = "<group>"; };
+		A730F0D21991A75600A0A4CE /* Friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Friends.png; sourceTree = "<group>"; };
+		A730F0DB1991ACC900A0A4CE /* UserIcon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = UserIcon.jpeg; sourceTree = "<group>"; };
+		A778C3AF1997D4A9004077AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +280,7 @@
 		1ABC5B98180613F40009BBC3 /* ridesharing */ = {
 			isa = PBXGroup;
 			children = (
-				72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */,
+				A778C3AE1997D4A9004077AF /* MainStoryboard.storyboard */,
 				720597751968E0CF006D3D89 /* constants.h */,
 				7293B7141971ED3A00EE28A8 /* Objects */,
 				1AB58366181116F900FAAB03 /* Library */,
@@ -318,6 +322,8 @@
 		7205975D195F5F8A006D3D89 /* Logos */ = {
 			isa = PBXGroup;
 			children = (
+				A730F0DB1991ACC900A0A4CE /* UserIcon.jpeg */,
+				A730F0D21991A75600A0A4CE /* Friends.png */,
 				7205975E195F5F8A006D3D89 /* entiresplashscreenRGB-02.png */,
 				7205975F195F5F8A006D3D89 /* entiresplashscreenRGB.png */,
 				72059760195F5F8A006D3D89 /* ic_rizzilogo.png */,
@@ -442,10 +448,10 @@
 				72C10E4D1978B3DE00E0F7B8 /* bookmark_photo.jpg in Resources */,
 				72C10E521978B3DE00E0F7B8 /* Default-568h@2x.png in Resources */,
 				72C10E591978B3DE00E0F7B8 /* photo.png in Resources */,
+				A730F0D31991A75600A0A4CE /* Friends.png in Resources */,
 				7205976F195F5F8A006D3D89 /* splashscreen-02.png in Resources */,
 				72C10E581978B3DE00E0F7B8 /* news.png in Resources */,
 				72019E4B194CF5A000CDA3AF /* FBLogin.png in Resources */,
-				72B7F2B2193593F70011F4D7 /* MainStoryboard.storyboard in Resources */,
 				72C10E551978B3DE00E0F7B8 /* map.png in Resources */,
 				72059769195F5F8A006D3D89 /* entiresplashscreenRGB.png in Resources */,
 				72C10E501978B3DE00E0F7B8 /* comments.png in Resources */,
@@ -461,9 +467,11 @@
 				72D3946919841E4300BB6B2B /* Destination_icon.png in Resources */,
 				72C10E4C1978B3DE00E0F7B8 /* bookmark.png in Resources */,
 				72C10E4F1978B3DE00E0F7B8 /* calendar_photo.jpg in Resources */,
+				A730F0DC1991ACC900A0A4CE /* UserIcon.jpeg in Resources */,
 				72C10E571978B3DE00E0F7B8 /* menu@2x.png in Resources */,
 				72059771195F5F8A006D3D89 /* splashscreenRGB.png in Resources */,
 				72059770195F5F8A006D3D89 /* splashscreenRGB-02.png in Resources */,
+				A778C3B01997D4A9004077AF /* MainStoryboard.storyboard in Resources */,
 				1A446F85181317320076FC25 /* driver_icon.png in Resources */,
 				1A446F8718131AEC0076FC25 /* driver_icon_small.png in Resources */,
 				7205976E195F5F8A006D3D89 /* rizzilogo-01.png in Resources */,
@@ -511,10 +519,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		72B7F2B0193593F70011F4D7 /* MainStoryboard.storyboard */ = {
+		A778C3AE1997D4A9004077AF /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				72B7F2B1193593F70011F4D7 /* en */,
+				A778C3AF1997D4A9004077AF /* en */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
