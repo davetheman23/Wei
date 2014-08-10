@@ -16,16 +16,21 @@
 @property (nonatomic, strong) PFGeoPoint *geopoint;
 @property (nonatomic, strong) PFUser *user;
 
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
+
 @end
 
 
 
 @implementation RSPostDestAnnotation
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andTitle:(NSString *)title andSubtitle:(NSString *)subtitle {
     self = [super init];
     if (self) {
         self.coordinate = coordinate;
+        self.title=title;
+        self.subtitle=subtitle;
     }
     return self;
 }
@@ -42,7 +47,14 @@
     //[geopointObject fetchIfNeeded];
     CLLocationCoordinate2D aCoordinate = CLLocationCoordinate2DMake(self.geopoint.latitude, self.geopoint.longitude);
     
-    return [self initWithCoordinate:aCoordinate];
+    NSDate *date = [anObject objectForKey:kRSParseTripPostsDepartTimeKey];
+    NSString *aTitle = @"Leave Time";
+    
+    NSString *aSubtitle = [[anObject objectForKey:kRSParseTripPostsOwnerKey] objectForKey:kRSParseUserFBNameKey];
+    
+    
+    //return [self initWithCoordinate:aCoordinate];
+    return [self initWithCoordinate:aCoordinate andTitle:aTitle andSubtitle:aSubtitle];
 }
 
 @end

@@ -18,8 +18,14 @@
 @property (nonatomic, readonly, strong) PFGeoPoint *geopoint;
 @property (nonatomic, readonly, strong) PFUser *user;
 
+// @optional
+// Title and subtitle for use by selection UI.
+@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy) NSString *subtitle;
+// @end
+
 //designated initializer
-- (id)initWithCoordinate:(CLLocationCoordinate2D) coordinate;
+- (id)initWithCoordinate:(CLLocationCoordinate2D) coordinate andTitle:(NSString *)title andSubtitle:(NSString *)subtitle;
 - (id)initWithPFObject:(PFObject *)anObject;
 
 @end
